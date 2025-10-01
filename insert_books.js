@@ -175,8 +175,11 @@ async function insertBooks() {
   }
 }
 
+module.exports = {MongoClient, uri, dbName,collectionName};
 // Run the function
 insertBooks().catch(console.error);
+
+
 
 /*
  * Example MongoDB queries you can try after running this script:
