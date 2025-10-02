@@ -139,8 +139,24 @@ async function main(){
 
 
     // Query to Create an index on the `title` field for faster searches
-    
+    // await Book.createIndexes({title: 1}); // Create an ascending index on the title field
+    // console.log("Index created on title field:");
 
+
+    // Query to Create a compound index on `author` and `published_year`
+    // await Book.createIndexes({author: 1, published_year:1}); // Create a compound index on author (ascending) and published_year (descending)
+    // console.log("Compound index created on author and published_year fields");
+
+
+
+    // Query to do this Use the `explain()` method to demonstrate the performance improvement with your indexes
+
+    const explained = await Book.find({title: "1984"}).explain("executionStats"); // Explain the query plan for finding a book by title
+    console.log(explained);
+    console.log("Query explained with execution stats");
+
+
+    
     await mongoose.disconnect();
 }
 main();
